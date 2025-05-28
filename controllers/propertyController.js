@@ -40,7 +40,7 @@ export const updateProperty = async (req, res) => {
   try {
     const property = await Property.findById(req.params.id);
     if (!property) return res.status(404).json({ message: 'Property not found' });
-    if (property.createdBy.toString() !== req.user.id)
+    if (!req.user || !req.user.id || !property.createdBy || property.createdBy.toString() !== req.user.id)
       return res.status(403).json({ message: 'Unauthorized' });
 
     Object.assign(property, req.body);
@@ -55,15 +55,16 @@ export const updateProperty = async (req, res) => {
 export const deleteProperty = async (req, res) => {
   try {
       console.log(req.params.id);
+      console.log(req.user._id); 
     const property = await Property.findById(req.params.id);
     
     if (!property) return res.status(404).json({ message: 'Property not found' });
-    if (!req.user || !req.user.id || property.createdBy.toString() !== req.user.id) {
+    if (!req.user || !req.user.id || !property.createdBy || property.createdBy.toString() !== req.user.id) {
     return res.status(403).json({ message: 'Unauthorized' });
 }
 
 
-    await property.deleteOne();
+    await property.deleteOne(property);
     await redisClient.del(PROPERTIES_CACHE_KEY);
     res.json({ message: 'Deleted successfully' });
   } catch (err) {
