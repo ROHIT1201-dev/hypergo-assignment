@@ -17,7 +17,18 @@ const userSchema = new mongoose.Schema(
         password:{
             type:String,
             required:true,
-        }
+        },
+
+        Favorites:[
+            {
+                type:String,
+                ref:"propertydata",
+
+
+            },
+        ]
+
+
          
     },
     {timestamps:true}

@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
 import authRoutes from "./routes/authRoutes.js"
+import favoritesRoutes from "./routes/favoritesRoutes.js";
 
 
 dotenv.config();
@@ -15,6 +16,7 @@ connectDB();
 
 app.use('/api/auth',authRoutes);
 app.use('/api/properties',propertyRoutes);
+app.use("/api/user", favoritesRoutes);
 
 const PORT=process.env.PORT || 5000 ;
 
