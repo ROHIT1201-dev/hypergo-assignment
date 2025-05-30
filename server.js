@@ -4,6 +4,7 @@ import { connectDB } from "./config/db.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
 import authRoutes from "./routes/authRoutes.js"
 import favoritesRoutes from "./routes/favoritesRoutes.js";
+import propertyFilters from "./routes/propertyFilters.js"
 
 
 dotenv.config();
@@ -17,6 +18,7 @@ connectDB();
 app.use('/api/auth',authRoutes);
 app.use('/api/properties',propertyRoutes);
 app.use("/api/user", favoritesRoutes);
+app.use("/api/property", propertyFilters);
 
 const PORT=process.env.PORT || 5000 ;
 

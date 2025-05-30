@@ -43,11 +43,11 @@ export const deleteFavorites = async (req, res) => {
         const propertyId = req.params.id;
 
         if(!user.Favorites.includes(propertyId)){
-            res.json({message: "Property does not exist"});
+            return res.status(404).json({message: "Property does not exist"});
         }
-        user.Favorites =user.Favorites.filter((favId) => {
-            favId.toString() !== propertyId
-        })
+        user.Favorites =user.Favorites.filter(
+            favId => favId.toString() !== propertyId
+        )
 
         await user.save()
 
