@@ -26,7 +26,13 @@ const userSchema = new mongoose.Schema(
 
 
             },
-        ]
+        ],
+
+        recommendationsReceived: [{
+            from: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+            properties: [{ type: mongoose.Schema.Types.ObjectId, ref: "propertydata" }],
+            date: { type: Date, default: Date.now }
+        }]
 
 
          

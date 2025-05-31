@@ -5,6 +5,7 @@ import propertyRoutes from "./routes/propertyRoutes.js";
 import authRoutes from "./routes/authRoutes.js"
 import favoritesRoutes from "./routes/favoritesRoutes.js";
 import propertyFilters from "./routes/propertyFilters.js"
+import recommendedRoutes from "./routes/recommendedRoutes.js"
 
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use('/api/auth',authRoutes);
 app.use('/api/properties',propertyRoutes);
 app.use("/api/user", favoritesRoutes);
 app.use("/api/property", propertyFilters);
+app.use("/api/user/recommend",recommendedRoutes);
 
 const PORT=process.env.PORT || 5000 ;
 
