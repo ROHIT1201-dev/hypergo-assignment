@@ -10,7 +10,7 @@ export const createProperty = async (req, res) => {
     await redisClient.del(PROPERTIES_CACHE_KEY)
     res.status(201).json(property);
   } catch (err) {
-    console.
+    
     res.status(500).json({ message: err.message });
   }
 };
