@@ -10,6 +10,7 @@ export const createProperty = async (req, res) => {
     await redisClient.del(PROPERTIES_CACHE_KEY)
     res.status(201).json(property);
   } catch (err) {
+    console.
     res.status(500).json({ message: err.message });
   }
 };
@@ -29,9 +30,10 @@ export const getProperties = async (req, res) => {
     // console.log(req.body);
     const properties = await Property.find();
     // console.log(properties);
-    await redisClient.set(PROPERTIES_CACHE_KEY,JSON.stringify(properties),{EX:300})
+    await redisClient.set(PROPERTIES_CACHE_KEY,JSON.stringify(properties),'EX', 3600)
     res.json(properties);
   } catch (err) {
+    console.log("errrrrrr",err)
     res.status(500).json({ message: err.message });
   }
 };

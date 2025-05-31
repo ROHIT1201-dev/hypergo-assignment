@@ -1,12 +1,14 @@
-import {createClient} from "redis";
 
-const redisClient  = createClient({
-    url: process.env.REDIS_URL,
+import Redis from 'ioredis'
+
+const redis = new Redis({
+  host: 'redis-15345.crce182.ap-south-1-1.ec2.redns.redis-cloud.com',
+  port: 15345,
+  password: 'YBJREpxw46kio9jZkpd4IkvejPapVZNg',
 
 });
 
-redisClient.on('error', err => console.log('Redis Client error',err));
 
-await redisClient.connect();
-
-export default redisClient; 
+redis.set('message', 'Hello from Redis Cloud');
+redis.get('message').then(console.log); 
+export default redis
