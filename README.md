@@ -1,7 +1,7 @@
 # hypergo-assignment
 
 
-# # 🏡 MEN Property Listing Backend
+# 🏡 Property Listing Backend
 
 A full-featured RESTful API backend for managing property listings, built with **Node.js**, **Express**, **MongoDB**, and **Redis**.
 
@@ -16,9 +16,24 @@ A full-featured RESTful API backend for managing property listings, built with *
 - Favoriting properties
 - Property recommendation between users
 - Deployment with Render + Upstash Redis
-## ## ⚙ Installation & Run
 
-## 📂 Dataset
+ ## 📁 Structure
+
+```bash
+├── controllers/        # Route controllers
+├── models/             # Mongoose models
+├── routes/             # Express routes
+├── middleware/         # Auth middleware
+├── utils/              # utilities used across controllers/middleware
+├── config/             # MongoDB & Redis config
+├── .env                # Env variables
+├── server.js           # Entry point
+└── README.md
+```
+
+## ⚙ Installation & Run
+
+### 📂 Dataset
 
 - [CSV Download Link](https://cdn2.gro.care/db424fd9fb74_1748258398689.csv)
 
@@ -43,10 +58,11 @@ Create a `.env` file in the root with the following:
 PORT=5000
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/properties
 JWT_SECRET=your_jwt_secret
-REDIS_URL=redis://default:*******@redis-15345.crce182.ap-south-1-1.ec2.redns.redis-cloud.com:15345
+REDIS_PORT=your_redis_port
+REDIS_PASS=your_redis_password
 ```
 > ✅ You can get the Redis URL from your Redis Console dashboard.
----
+
 
 ### 5. Run the Server
 
@@ -56,23 +72,6 @@ npm start     # For production
 ```
 API runs on: `http://localhost:5000`
 
----
-
-## 📁 Structure
-
-```bash
-├── controllers/        # Route controllers
-├── models/             # Mongoose models
-├── routes/             # Express routes
-├── middleware/         # Auth middleware
-├── utils/              # utilities used across controllers/middleware
-├── config/             # MongoDB & Redis config
-├── .env                # Env variables
-├── server.js           # Entry point
-└── README.md
-```
-
----
 ## 🛠️ Tech Stack
 
 - **Node.js**
@@ -83,7 +82,7 @@ API runs on: `http://localhost:5000`
 - **Render** for backend hosting
 - **Postman** for API testing
 
----
+
 
 ## 📬 API Endpoints
 
@@ -122,12 +121,12 @@ GET     /api/user/recommend/received              Get properties recommended to 
 
 > 🔐 All routes except `/auth/register` and `/auth/login`  and `/api/properties` are protected and require a valid JWT in the `Authorization` header .
 
----
+
 
 ## 🌐 Deployment
 - 🟣 **Backend**: Hosted on [Render](https://hypergo-assignment-backend.onrender.com)
 
----
+
 
 ## 👤 Author
 
